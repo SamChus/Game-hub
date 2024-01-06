@@ -1,6 +1,3 @@
-import React from "react";
-
-
 
 const getCroppedImageUrl = (url: string) => {
     const target = "media/"
