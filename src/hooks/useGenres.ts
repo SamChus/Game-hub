@@ -4,14 +4,12 @@ import { CanceledError } from "axios";
 import useData from "./useData";
 
 interface Genre {
-    id: number,
-    name: string
+  id: number;
+  name: string;
+  image_background: string
 }
 
-interface fetchGenresResponse{
-    count: number,
-    results: Genre[]
-}
+
 
 const useGenre = () => useData<Genre>("/genres");
 
