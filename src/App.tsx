@@ -12,10 +12,11 @@ export interface QueryObject {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string
 }
 
 function App() {
- const [gameQuery, setGameQuery] = useState<QueryObject>({} as QueryObject);
+  const [gameQuery, setGameQuery] = useState<QueryObject>({} as QueryObject);
 
   return (
     <Grid
@@ -29,7 +30,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={(searchText)=>setGameQuery({...gameQuery, searchText})}/>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={2}>
@@ -41,10 +42,20 @@ function App() {
       </Show>
       <GridItem area="main">
         <HStack spacing={5} paddingLeft={5}>
-          <PlatformSelector onSelectedPlatform={(platform) => setGameQuery({...gameQuery, platform})} selectedPlatform={gameQuery.platform}/>
-          <SortSelector selectedSort={gameQuery.sortOrder} onSelectedSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})}/>
+          <PlatformSelector
+            onSelectedPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+            selectedPlatform={gameQuery.platform}
+          />
+          <SortSelector
+            selectedSort={gameQuery.sortOrder}
+            onSelectedSortOrder={(sortOrder) =>
+              setGameQuery({ ...gameQuery, sortOrder })
+            }
+          />
         </HStack>
-        <GameGrid gameQuery={gameQuery}/>
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
