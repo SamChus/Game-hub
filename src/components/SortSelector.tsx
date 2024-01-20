@@ -1,14 +1,23 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronRight } from "react-icons/bs";
 import useData from "../hooks/useData";
+import useGame from "../hooks/useGames";
+import { QueryObject } from "../App";
 
 
 interface Props {
     onSelectedSortOrder: (sortOrder:string) => void,
     selectedSort: string
+    gameQuery: QueryObject
 }
 
-const SortSelector = ({onSelectedSortOrder, selectedSort}:Props) => {
+
+
+const SortSelector = ({onSelectedSortOrder, selectedSort, gameQuery}:Props) => {
+  const { error } = useGame(gameQuery);
+
+  if (error) return null;
+
     
     const sortOrders = [
       { value: "", label: "Relevance" },
