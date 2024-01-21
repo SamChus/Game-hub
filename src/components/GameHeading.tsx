@@ -8,9 +8,9 @@ interface Props {
 }
 
 const GameHeading = ({ gameQuery }: Props) => {
-  const { error } = useGame(gameQuery);
+  // const { error } = useGame(gameQuery);
 
-  if (error) return null
+  // if (error) return null
 
   const heading = `${gameQuery.platform?.name || "" } ${gameQuery.genre?.name || ""} Games`
   return (

@@ -14,9 +14,9 @@ interface Props {
 
 
 const SortSelector = ({onSelectedSortOrder, selectedSort, gameQuery}:Props) => {
-  const { error } = useGame(gameQuery);
+  // const { error } = useGame(gameQuery);
 
-  if (error) return null;
+  // if (error) return null;
 
     
     const sortOrders = [
