@@ -1,6 +1,5 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronRight } from "react-icons/bs";
-import useData from "../hooks/useData";
 import useGame from "../hooks/useGames";
 import { QueryObject } from "../App";
 

@@ -5,6 +5,8 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hooks/useGenres";
 import { Platform } from "../hooks/usePlatforms";
 import { QueryObject } from "../App";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useIsFetching } from "@tanstack/react-query";
 
 interface Props {
   gameQuery: QueryObject;
@@ -12,9 +14,11 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGame(gameQuery);
+  // const query  = new QueryClient()
   const Skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
+  const isFetching = useIsFetching();
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
   return (
     <SimpleGrid
       columns={{
@@ -27,7 +31,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       spacing={3}
     >
       {isLoading && Skeleton.map((i) => <GameCardSkeleton key={i} />)}
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCard key={game.id} game={game} />
       ))}
     </SimpleGrid>
