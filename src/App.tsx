@@ -10,8 +10,8 @@ import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
 export interface QueryObject {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId: number;
+  platformId: number;
   sortOrder: string;
   searchText: string,
 }
@@ -39,8 +39,8 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={2}>
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedGenreId={gameQuery.genreId}
+            onSelectedGenreId={(genreId) => setGameQuery({ ...gameQuery, genreId })}
           />
         </GridItem>
       </Show>
@@ -49,10 +49,10 @@ function App() {
           <GameHeading gameQuery={gameQuery} />
           <HStack spacing={5} marginBottom={3}>
             <PlatformSelector
-              onSelectedPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
+              onSelectedPlatformId={(platformId) =>
+                setGameQuery({ ...gameQuery, platformId })
               }
-              selectedPlatform={gameQuery.platform}
+              selectedPlatformId={gameQuery.platformId}
             />
             <SortSelector
               selectedSort={gameQuery.sortOrder}
