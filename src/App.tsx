@@ -13,7 +13,7 @@ export interface QueryObject {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
-  searchText: string
+  searchText: string,
 }
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
         base: "1fr",
         lg: "200px 1fr",
       }}
+    
     >
       <GridItem area="nav">
         <NavBar
@@ -45,7 +46,7 @@ function App() {
       </Show>
       <GridItem area="main">
         <Box paddingLeft={5}>
-          <GameHeading gameQuery={gameQuery}/>
+          <GameHeading gameQuery={gameQuery} />
           <HStack spacing={5} marginBottom={3}>
             <PlatformSelector
               onSelectedPlatform={(platform) =>
