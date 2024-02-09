@@ -27,7 +27,7 @@ const fetchedGamesCount = data?.pages.reduce((total, page)=> total + page.result
   if (error) return <Text>{error.message}</Text>;
   return (
     <InfiniteScroll dataLength={fetchedGamesCount} next={() =>fetchNextPage()} hasMore={!!hasNextPage} loader={<Spinner />}>
-      <SimpleGrid columns={[2, 3, 4]} spacing={10}>
+      <SimpleGrid columns={[2, 3, 4]} spacing={5}>
         {data?.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.results.map((game) => (
