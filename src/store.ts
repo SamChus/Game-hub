@@ -7,7 +7,6 @@ export interface QueryObject {
   searchText?: string;
 }
 
-
 interface GameQueryStore {
   gameQuery: QueryObject;
   setSearchText: (searchText: string) => void;
@@ -16,11 +15,14 @@ interface GameQueryStore {
   setSortOrder: (sortOrder: string) => void;
 }
 
-
 export const useGameQueryStore = create<GameQueryStore>((set) => ({
   gameQuery: {},
-  setGenreId: (genreId) => set((state) => ({ gameQuery: { ...state.gameQuery, genreId } })),
-  setPlatformId: (platformId) => set((state) => ({ gameQuery: { ...state.gameQuery, platformId } })),
-  setSortOrder: (sortOrder) => set((state) => ({ gameQuery: { ...state.gameQuery, sortOrder } })),
-  setSearchText: (searchText) => set((state) => ({ gameQuery: { ...state.gameQuery, searchText } })),
+  setGenreId: (genreId) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, genreId } })),
+  setPlatformId: (platformId) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, platformId } })),
+  setSortOrder: (sortOrder) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
+  setSearchText: (searchText) =>
+    set(() => ({ gameQuery: { searchText } })),
 }));
