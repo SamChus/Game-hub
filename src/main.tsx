@@ -6,6 +6,8 @@ import App from "./App";
 import './index.css'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/Routes";
 
 const queryClient = new QueryClient()
 
@@ -15,8 +17,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
-        <App />
-        
+        <RouterProvider router={router}/>
       </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>
