@@ -5,6 +5,7 @@ import useGame from "../hooks/useGames";
 import { useGameQueryStore } from "../store";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
+import GameCardContainer from "./GameCardContainer";
 
 
 
@@ -18,18 +19,23 @@ const fetchedGamesCount = data?.pages.reduce((total, page)=> total + page.result
 
   if (error) return <Text>{error.message}</Text>;
   return (
-    <InfiniteScroll dataLength={fetchedGamesCount} next={() =>fetchNextPage()} hasMore={!!hasNextPage} loader={<Spinner />}>
-      <SimpleGrid columns={[2, 3, 4]} spacing={5}>
+    <InfiniteScroll
+      dataLength={fetchedGamesCount}
+      next={() => fetchNextPage()}
+      hasMore={!!hasNextPage}
+      loader={<Spinner />}
+    >
+      <SimpleGrid columns={[2, 3]} spacing={5} mt={3} px={2}>
         {data?.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.results.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <GameCardContainer key={game.id}>
+                <GameCard game={game} /> 
+              </GameCardContainer>
             ))}
           </React.Fragment>
         ))}
-        {isLoading
-          ? Skeleton.map((i) => <GameCardSkeleton key={i} />)
-          : null}
+        {isLoading ? Skeleton.map((i) => <GameCardSkeleton key={i} />) : null}
       </SimpleGrid>
     </InfiniteScroll>
   );
