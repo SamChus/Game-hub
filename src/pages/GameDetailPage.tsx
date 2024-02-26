@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import useGame from "../hooks/useGame";
-import { Button, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Button, Heading, Spinner, Text} from "@chakra-ui/react";
 import { useState } from "react";
+import ExpandableText from "../components/ExpandableText";
+import DefinitionText from "../components/DefinitionText";
+import { platform } from "os";
 
 const GameDetailPage = () => {
   const [showMore, setShowMore] = useState(false);
@@ -23,13 +26,12 @@ const GameDetailPage = () => {
   return (
     <>
       <Heading>{game.name}</Heading>
-      <Text>
-        {getShortText()}
-
-        <Button onClick={() => setShowMore(!showMore)} ml={2} p={2} >
-          {!showMore ? "Show More" : "Show Less"}
-        </Button>
-      </Text>
+      <ExpandableText>
+        {game.description_raw}
+      </ExpandableText>
+      <DefinitionText term="Platform">
+        {game.parent_platforms.map(({platform})=> <Text>{platform.name}</Text>)}
+      </DefinitionText>
     </>
   );
 };
