@@ -7,13 +7,13 @@ import DefinitionText from "../components/DefinitionText";
 import { platform } from "os";
 import CriticScore from "../components/CriticScore";
 import GameAttribute from "../components/GameAttribute";
+import GameTrailer from "../components/GameTrailer";
 
 const GameDetailPage = () => {
   const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
   const { data: game, isLoading, error } = useGame(slug!);
-  console.log(game);
-
+ 
   if (isLoading) return <Spinner />;
 
   if (error || !game) throw error;
@@ -30,6 +30,7 @@ const GameDetailPage = () => {
       <Heading>{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
      <GameAttribute  game={game}/>
+     <GameTrailer gameId={game.id}/>
     </>
   );
 };
