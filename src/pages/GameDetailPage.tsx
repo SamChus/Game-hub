@@ -8,9 +8,9 @@ import { platform } from "os";
 import CriticScore from "../components/CriticScore";
 import GameAttribute from "../components/GameAttribute";
 import GameTrailer from "../components/GameTrailer";
+import GameScreenshots from "../components/GameScreenshots";
 
 const GameDetailPage = () => {
-  const [showMore, setShowMore] = useState(false);
   const { slug } = useParams();
   const { data: game, isLoading, error } = useGame(slug!);
  
@@ -18,12 +18,7 @@ const GameDetailPage = () => {
 
   if (error || !game) throw error;
 
-  const getShortText = () => {
-    if (showMore) {
-      return game.description_raw;
-    }
-    return game.description_raw.slice(0, 300).concat(" ....");
-  };
+ 
 
   return (
     <>
@@ -31,6 +26,7 @@ const GameDetailPage = () => {
       <ExpandableText>{game.description_raw}</ExpandableText>
      <GameAttribute  game={game}/>
      <GameTrailer gameId={game.id}/>
+     <GameScreenshots gameId={game.id}/> 
     </>
   );
 };
